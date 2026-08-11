@@ -224,5 +224,41 @@
       "project manager",
       "system"
     ]
+  },
+  {
+    "id": "prodrive-rd",
+    "name": "Prodrive Technologies Careers",
+    "company": "Prodrive Technologies",
+    "enabled": true,
+    "type": "prodrive",
+    "url": "https://careers.prodrive-technologies.com/vacancies",
+    "keywords": [
+      "mechanical",
+      "project"
+    ],
+    "fields": [
+      "Research & Development"
+    ],
+    "education": [
+      "Master",
+      "Bachelor-Master"
+    ],
+    "locations": [
+      "The Netherlands - Eindhoven",
+      "Germany - Köln"
+    ],
+    "max_pages": 20
+  },
+  {
+    "id": "gkn-papendrecht-engineering",
+    "name": "GKN Aerospace Careers",
+    "company": "GKN Aerospace",
+    "enabled": true,
+    "type": "gkn",
+    "url": "https://joinus.gknaerospace.com/search-results?keyword=&team=Engineering&location=Papendrecht,%20NL",
+    "keywords": [
+      "mechanical",
+      "project"
+    ]
   }
 ]
