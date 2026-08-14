@@ -260,5 +260,13 @@
       "mechanical",
       "project"
     ]
+  },
+  {
+    "id": "toyota-europe-rd",
+    "name": "Toyota Motor Europe Careers",
+    "company": "Toyota Motor Europe",
+    "enabled": true,
+    "type": "toyota",
+    "url": "https://careers.toyota-europe.com/jobs?domain=r-d&level=experienced,graduate&location=brussels-zaventem,brussels-evere"
   }
 ]
