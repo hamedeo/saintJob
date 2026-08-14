@@ -269,5 +269,46 @@
     "enabled": true,
     "type": "toyota",
     "url": "https://careers.toyota-europe.com/jobs?domain=r-d&level=experienced,graduate&location=brussels-zaventem,brussels-evere"
+  },
+  {
+    "id": "vanderlande-netherlands",
+    "name": "Vanderlande Careers",
+    "company": "Vanderlande",
+    "enabled": true,
+    "type": "vanderlande",
+    "url": "https://careers.vanderlande.com/all-jobs/?vacancy_keyword=&vacancy_location=netherlands&total_jobs=37",
+    "keywords": [
+      "mechanical",
+      "project"
+    ]
+  },
+  {
+    "id": "frencken-netherlands",
+    "name": "Frencken Group Careers",
+    "company": "Frencken Group",
+    "enabled": true,
+    "type": "workday",
+
+    "base_url": "https://frenckengroup.wd103.myworkdayjobs.com/en-US/External",
+    "tenant": "frenckengroup",
+    "site": "External",
+
+    "keywords": [
+      "mechanical",
+      "project",
+      "design"
+    ],
+
+    "facets": {
+      "locations": [
+        "8b4aca77362610196e0e51d410fe0000"
+      ],
+      "workerSubType": [
+        "380d8efc902410016d5ee7e8c33d0000",
+        "8b4aca77362610199f6c01f89bc90000",
+        "8b4aca77362610199f6c032c0a850000",
+        "8b4aca77362610199f6c03c5c48a0000"
+      ]
+    }
   }
 ]
