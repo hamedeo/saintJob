@@ -407,5 +407,34 @@
       "project"
     ],
     "max_pages": 20
+  },
+  {
+    "id": "mistral-amsterdam",
+    "name": "Mistral AI Careers",
+    "company": "Mistral AI",
+    "enabled": true,
+    "type": "ashby",
+
+    "board_names": [
+      "mistral",
+      "mistral.ai"
+    ],
+
+    "employment_types": [
+      "FullTime"
+    ],
+
+    "locations": [
+      "Amsterdam"
+    ],
+
+    "keywords": [
+      "physics",
+      "scientist",
+      "research",
+      "computational",
+      "simulation",
+      "project"
+    ]
   }
 ]
