@@ -364,5 +364,29 @@
       "thermal",
       "energy"
     ]
+  },
+  {
+    "id": "aarding-ceco",
+    "name": "Aarding CECO Careers",
+    "company": "Aarding / CECO Environmental",
+    "enabled": true,
+    "type": "icims",
+    "url": "https://careers-aarding-cecoenviro.icims.com/jobs/search?hashed=-625915573",
+    "locations": [
+      "NL-"
+    ],
+    "keywords": [
+      "mechanical",
+      "design",
+      "project engineer",
+      "project manager"
+    ],
+    "exclude_keywords": [
+      "controller",
+      "finance",
+      "accounting",
+      "buyer",
+      "sales"
+    ]
   }
 ]
