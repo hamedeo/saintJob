@@ -330,5 +330,23 @@
       "NL",
       "DE"
     ]
+  },
+  {
+    "id": "siemens-relevant-engineering",
+    "name": "Siemens Careers",
+    "company": "Siemens",
+    "enabled": true,
+    "type": "siemens",
+    "url": "https://jobs.siemens.com/en_US/externaljobs/SearchJobs/?42386=%5B812131%2C812130%2C812132%5D&42386_format=17546&42389=%5B102127%2C102117%5D&42389_format=17549&42390=%5B102156%2C102157%2C102158%5D&42390_format=17550&listFilterMode=1&folderSort=postedDate&folderSortDirection=ASC",
+    "keywords": [
+      "mechanical",
+      "project",
+      "CFD",
+      "simulation",
+      "thermal",
+      "fluid"
+    ],
+    "page_size": 6,
+    "max_pages": 50
   }
 ]
