@@ -310,5 +310,25 @@
         "8b4aca77362610199f6c03c5c48a0000"
       ]
     }
+  },
+  {
+    "id": "nem-energy",
+    "name": "NEM Energy Careers",
+    "company": "NEM Energy",
+    "enabled": true,
+    "type": "recruitee",
+    "base_url": "https://nemenergy.recruitee.com",
+    "keywords": [
+      "mechanical",
+      "project",
+      "engineer",
+      "design",
+      "process",
+      "quality"
+    ],
+    "countries": [
+      "NL",
+      "DE"
+    ]
   }
 ]
