@@ -348,5 +348,21 @@
     ],
     "page_size": 6,
     "max_pages": 50
+  },
+  {
+    "id": "gradyent",
+    "name": "Gradyent Careers",
+    "company": "Gradyent",
+    "enabled": true,
+    "type": "greenhouse",
+    "board_token": "gradyent",
+    "keywords": [
+      "digital twin",
+      "mechanical",
+      "project",
+      "simulation",
+      "thermal",
+      "energy"
+    ]
   }
 ]
