@@ -388,5 +388,24 @@
       "buyer",
       "sales"
     ]
+  },
+  {
+    "id": "philips-talent-pool",
+    "name": "Philips Talent Pool",
+    "company": "Philips",
+    "enabled": true,
+    "type": "talent_pool",
+    "url": "https://philips.talent-pool.com/projects/?location=NL%253AAmsterdam%253A0,NL%253ABest%253A0,NL%253ADrachten%253A0,NL%253AEde%253A0,NL%253AEindhoven%253A0,NL%253ALeusden%253A0&page=1&pools=133,131,130,134,975&openOnly=true",
+    "keywords": [
+      "mechanical",
+      "computational",
+      "modeling",
+      "simulation",
+      "cfd",
+      "thermal",
+      "fluid",
+      "project"
+    ],
+    "max_pages": 20
   }
 ]
