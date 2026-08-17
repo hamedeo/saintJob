@@ -436,5 +436,26 @@
       "simulation",
       "project"
     ]
+  },
+  {
+    "id": "canon-rd-venlo",
+    "name": "Canon Production Printing Careers",
+    "company": "Canon Production Printing",
+    "enabled": true,
+    "type": "successfactors",
+    "url": "https://jobs.cpp.canon/search?locale=en_GB&optionsFacetsDD_customfield3=Professional&searchResultView=LIST&markerViewed=&carouselIndex=&facetFilters=%7B%22filter2%22%3A%5B%22Research+%26+Development%22%5D%2C%22jobType%22%3A%5B%22Professional%22%5D%2C%22sfstd_jobLocation_obj%22%3A%5B%22Venlo%22%5D%7D&pageNumber=0",
+    "keywords": [
+      "mechanical",
+      "project",
+      "physics",
+      "simulation",
+      "thermal",
+      "fluid",
+      "design",
+      "development",
+      "research"
+    ],
+    "default_location": "Venlo, Netherlands",
+    "max_pages": 30
   }
 ]
