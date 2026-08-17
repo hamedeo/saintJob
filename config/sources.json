@@ -457,5 +457,24 @@
     ],
     "default_location": "Venlo, Netherlands",
     "max_pages": 30
+  },
+  {
+    "id": "4itego-relevant",
+    "name": "4ITEGO Careers",
+    "company": "4ITEGO Group",
+    "enabled": true,
+    "type": "fouritego",
+    "url": "https://www.4itegogroup.com/en/jobs",
+    "keywords": [
+      "mechanical",
+      "simulation",
+      "application engineer",
+      "project",
+      "solution"
+    ],
+    "locations": [
+      "The Netherlands",
+      "Belgium"
+    ]
   }
 ]
