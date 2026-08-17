@@ -476,5 +476,16 @@
       "The Netherlands",
       "Belgium"
     ]
+  },
+  {
+    "id": "kmwe-engineering",
+    "name": "KMWE Careers",
+    "company": "KMWE",
+    "enabled": true,
+    "type": "kmwe",
+    "url": "https://www.careersatkmwe.com/careers/",
+    "disciplines": [
+      "Engineering"
+    ]
   }
 ]
