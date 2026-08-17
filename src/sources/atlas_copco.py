@@ -1,7 +1,12 @@
 import re
 from urllib.parse import urljoin, urlparse
 
-from playwright.sync_api import sync_playwright
+import requests
+from bs4 import BeautifulSoup
+from playwright.sync_api import (
+    TimeoutError as PlaywrightTimeoutError,
+    sync_playwright,
+)
 
 from src.models import Job
 from src.sources.base import JobSource
@@ -11,23 +16,75 @@ class AtlasCopcoSource(JobSource):
     def __init__(self, config: dict):
         self.source_id = config["id"]
         self.source_name = config["name"]
-
         self.company = config.get(
             "company",
             "Atlas Copco Group",
         )
-
         self.url = config["url"]
 
         self.timeout_ms = int(
-            config.get(
-                "timeout_ms",
-                45000,
-            )
+            config.get("timeout_ms", 45000)
         )
 
+        self.session = requests.Session()
+        self.session.headers.update({
+            "User-Agent": (
+                "Mozilla/5.0 "
+                "(Windows NT 10.0; Win64; x64) "
+                "AppleWebKit/537.36 "
+                "(KHTML, like Gecko) "
+                "Chrome/127.0 Safari/537.36"
+            )
+        })
+
     def fetch_jobs(self) -> list[Job]:
+        vacancies = self._fetch_listing()
+
         jobs: dict[str, Job] = {}
+
+        for vacancy in vacancies:
+            job_id = vacancy["job_id"]
+            job_url = vacancy["url"]
+            fallback_title = vacancy["title"]
+
+            details = self._fetch_details(
+                job_url
+            )
+
+            title = (
+                details.get("title")
+                or fallback_title
+            )
+
+            location = self._format_location(
+                details.get("city", ""),
+                details.get("country", ""),
+            )
+
+            jobs[job_id] = Job(
+                source_id=self.source_id,
+                source_name=self.source_name,
+                job_id=job_id,
+                title=title,
+                url=job_url,
+                company=self.company,
+                location=location,
+            )
+
+        return sorted(
+            jobs.values(),
+            key=lambda job: job.title.casefold(),
+        )
+
+    def _fetch_listing(
+        self,
+    ) -> list[dict]:
+        """
+        Atlas Copco's search page is rendered by
+        JavaScript/Algolia, so Playwright is used here.
+        """
+
+        vacancies: dict[str, dict] = {}
 
         with sync_playwright() as playwright:
             browser = playwright.chromium.launch(
@@ -55,10 +112,16 @@ class AtlasCopcoSource(JobSource):
                     timeout=self.timeout_ms,
                 )
 
-                page.wait_for_selector(
-                    'a[href*="/job-detail/"]',
-                    timeout=self.timeout_ms,
-                )
+                try:
+                    page.wait_for_selector(
+                        'a[href*="/job-detail/"]',
+                        timeout=self.timeout_ms,
+                    )
+                except PlaywrightTimeoutError as error:
+                    raise RuntimeError(
+                        "Atlas Copco loaded, but no "
+                        "job-detail links appeared."
+                    ) from error
 
                 # Let Algolia finish rendering.
                 page.wait_for_timeout(1500)
@@ -101,167 +164,249 @@ class AtlasCopcoSource(JobSource):
                     slug = match.group(1)
                     job_id = match.group(2)
 
-                    # Avoid duplicate links to the same vacancy.
-                    if job_id in jobs:
+                    if job_id in vacancies:
                         continue
 
-                    title = self._extract_title(
+                    title = self._title_from_link(
                         link,
                         slug,
                     )
 
-                    if not title:
-                        continue
-
-                    location = (
-                        self._extract_location(
-                            link
-                        )
-                    )
-
-                    jobs[job_id] = Job(
-                        source_id=self.source_id,
-                        source_name=self.source_name,
-                        job_id=job_id,
-                        title=title,
-                        url=job_url,
-                        company=self.company,
-                        location=location,
-                    )
+                    vacancies[job_id] = {
+                        "job_id": job_id,
+                        "title": title,
+                        "url": job_url,
+                    }
 
             finally:
                 browser.close()
 
-        return sorted(
-            jobs.values(),
-            key=lambda job: job.title.casefold(),
-        )
-
-    @staticmethod
-    def _extract_title(
-        link,
-        slug: str,
-    ) -> str:
-        """
-        Extract only the actual vacancy title.
-
-        Atlas Copco job links can contain the entire
-        vacancy card, so using link.inner_text()
-        directly may produce thousands of characters.
-        """
-
-        current = link
-
-        for _ in range(8):
-            headings = current.locator(
-                "h1, h2, h3, h4, h5"
+        if not vacancies:
+            raise RuntimeError(
+                "Atlas Copco loaded, but no "
+                "valid vacancies were extracted."
             )
 
-            for index in range(
-                headings.count()
-            ):
-                try:
-                    title = " ".join(
-                        headings
-                        .nth(index)
-                        .inner_text()
-                        .split()
-                    )
-                except Exception:
-                    continue
+        return list(
+            vacancies.values()
+        )
 
-                if (
-                    title
-                    and 3 <= len(title) <= 200
-                ):
-                    return title
+    def _fetch_details(
+        self,
+        job_url: str,
+    ) -> dict[str, str]:
+        """
+        Individual Atlas Copco job pages are
+        server-rendered, so requests is sufficient.
+        """
 
-            current = current.locator("..")
-
-            if current.count() == 0:
-                break
-
-        # Try the link text only if it looks
-        # like a normal job title.
         try:
-            link_text = " ".join(
-                link.inner_text().split()
+            response = self.session.get(
+                job_url,
+                timeout=20,
             )
-        except Exception:
-            link_text = ""
+            response.raise_for_status()
 
-        if (
-            link_text
-            and 3 <= len(link_text) <= 200
-        ):
-            return link_text
+        except requests.RequestException as error:
+            print(
+                "Atlas Copco warning: "
+                f"could not read {job_url}: {error}"
+            )
 
-        # Safe fallback: construct title from URL slug.
-        return AtlasCopcoSource._title_from_slug(
-            slug
+            return {}
+
+        soup = BeautifulSoup(
+            response.text,
+            "html.parser",
+        )
+
+        text = soup.get_text(
+            "\n",
+            strip=True,
+        )
+
+        title = self._extract_page_title(
+            soup,
+            job_url,
+        )
+
+        country = self._extract_field(
+            text,
+            "Location",
+        )
+
+        city = self._extract_field(
+            text,
+            "City",
+        )
+
+        return {
+            "title": title,
+            "country": country,
+            "city": city,
+        }
+
+    @staticmethod
+    def _extract_field(
+        text: str,
+        field: str,
+    ) -> str:
+        """
+        Handles Atlas Copco metadata such as:
+
+        Location: | Netherlands
+        City: | Oosterhout
+        """
+
+        pattern = (
+            rf"{re.escape(field)}\s*:"
+            rf"\s*(?:\|\s*)?"
+            rf"([^\n]+)"
+        )
+
+        match = re.search(
+            pattern,
+            text,
+            flags=re.IGNORECASE,
+        )
+
+        if not match:
+            return ""
+
+        value = match.group(1).strip()
+
+        value = re.sub(
+            r"^[|•:\-\s]+",
+            "",
+            value,
+        )
+
+        return " ".join(
+            value.split()
         )
 
     @staticmethod
-    def _extract_location(
-        link,
+    def _extract_page_title(
+        soup: BeautifulSoup,
+        job_url: str,
     ) -> str:
-        current = link
+        # Try H1 if one exists.
+        heading = soup.find("h1")
 
-        for _ in range(8):
-            location_element = current.locator(
-                '[class*="location" i], '
-                '[data-testid*="location" i]'
+        if heading is not None:
+            title = " ".join(
+                heading.get_text(
+                    " ",
+                    strip=True,
+                ).split()
             )
 
-            if location_element.count():
-                try:
-                    location = " ".join(
-                        location_element
-                        .first
-                        .inner_text()
-                        .split()
-                    )
-                except Exception:
-                    location = ""
+            if (
+                title
+                and len(title) <= 200
+            ):
+                return title
 
-                if (
-                    location
-                    and len(location) <= 150
-                ):
-                    return location
+        # Atlas Copco's HTML title is also reliable.
+        if soup.title:
+            title = " ".join(
+                soup.title.get_text(
+                    " ",
+                    strip=True,
+                ).split()
+            )
 
-            current = current.locator("..")
+            # Remove possible site suffix.
+            title = re.sub(
+                r"\s*[|\-]\s*Atlas Copco.*$",
+                "",
+                title,
+                flags=re.IGNORECASE,
+            ).strip()
 
-            if current.count() == 0:
-                break
+            if (
+                title
+                and len(title) <= 200
+            ):
+                return title
+
+        # Final fallback from URL.
+        path = urlparse(
+            job_url
+        ).path.rstrip("/")
+
+        parts = path.split("/")
+
+        if len(parts) >= 2:
+            return (
+                parts[-2]
+                .replace("---", " - ")
+                .replace("--", " - ")
+                .replace("-", " ")
+                .strip()
+                .title()
+            )
 
         return ""
 
     @staticmethod
-    def _title_from_slug(
+    def _title_from_link(
+        link,
         slug: str,
     ) -> str:
-        # Preserve separators such as:
-        # mechanical-engineer---projects
-        # -> Mechanical Engineer - Projects
+        """
+        Avoid using huge Atlas Copco card text
+        as the job title.
+        """
 
-        value = slug.replace(
-            "---",
-            " - ",
+        try:
+            text = " ".join(
+                link.inner_text().split()
+            )
+        except Exception:
+            text = ""
+
+        if (
+            text
+            and 3 <= len(text) <= 200
+        ):
+            return text
+
+        return (
+            slug
+            .replace("---", " - ")
+            .replace("--", " - ")
+            .replace("-", " ")
+            .strip()
+            .title()
         )
 
-        value = value.replace(
-            "--",
-            " - ",
+    @staticmethod
+    def _format_location(
+        city: str,
+        country: str,
+    ) -> str:
+        city = " ".join(
+            city.split()
         )
 
-        value = value.replace(
-            "-",
-            " ",
+        country = " ".join(
+            country.split()
         )
 
-        value = " ".join(
-            value.split()
-        )
+        if city and country:
+            if (
+                city.casefold()
+                == country.casefold()
+            ):
+                return city
 
-        return value.title()
+            return f"{city}, {country}"
+
+        if city:
+            return city
+
+        if country:
+            return country
+
+        return ""
