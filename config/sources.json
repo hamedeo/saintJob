@@ -496,5 +496,26 @@
     "type": "atlas_copco",
     "url": "https://www.atlascopcogroup.com/en/careers/jobs/job-overview?GROUP_EN_dateDesc%5Bquery%5D=Mechanical&GROUP_EN_dateDesc%5BrefinementList%5D%5Bdata.jobFunction%5D%5B0%5D=Engineering&GROUP_EN_dateDesc%5BrefinementList%5D%5Bdata.jobFunction%5D%5B1%5D=Research+and+Development&GROUP_EN_dateDesc%5BrefinementList%5D%5Bdata.region%5D%5B0%5D=Europe+%2F+Middle+East+%2F+Africa",
     "max_pages": 50
+  },
+  {
+    "id": "lam-research-benelux",
+    "name": "Lam Research Careers",
+    "company": "Lam Research",
+    "enabled": true,
+    "type": "eightfold",
+    "base_url": "https://careers.lamresearch.com/careers",
+    "locations": [
+      "Netherland",
+      "Belgium"
+    ],
+    "allowed_country_codes": [
+      "NL",
+      "BE"
+    ],
+    "keywords": [
+      "Mechanical",
+      "Process"
+    ],
+    "timeout_ms": 20000
   }
 ]
