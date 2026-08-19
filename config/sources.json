@@ -517,5 +517,19 @@
       "Process"
     ],
     "timeout_ms": 20000
+  },
+  {
+    "id": "tno-relevant",
+    "name": "TNO Careers",
+    "company": "TNO",
+    "enabled": true,
+    "type": "tno",
+    "url": "https://www.tno.nl/en/careers/vacancies/",
+    "keywords": [
+      "mechanical",
+      "process",
+      "system engineer",
+      "project"
+    ]
   }
 ]
