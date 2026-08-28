@@ -531,5 +531,19 @@
       "system engineer",
       "project"
     ]
+  },
+  {
+    "id": "allseas-design-engineering",
+    "name": "Allseas Careers",
+    "company": "Allseas",
+    "enabled": true,
+    "type": "allseas",
+    "url": "https://www.allseas.com/en/careers/design-&-engineering?id=3",
+    "keywords": [
+      "mechanical",
+      "project",
+      "process"
+    ],
+    "timeout_ms": 20000
   }
 ]
