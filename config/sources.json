@@ -545,5 +545,45 @@
       "process"
     ],
     "timeout_ms": 20000
+  },
+  {
+    "id": "nts-engineering",
+    "name": "NTS Careers",
+    "company": "NTS",
+    "enabled": true,
+    "type": "nts",
+    "url": "https://www.nts-group.com/en/vacancies/?job_areas%5B0%5D=engineering-technology",
+    "keywords": [
+      "mechanical",
+      "project",
+      "process"
+    ],
+    "locations": [
+      "Eindhoven",
+      "Hengelo",
+      "Drachten",
+      "Bergeijk",
+      "Helmond",
+      "Nijmegen"
+    ]
+  },
+  {
+    "id": "frencken-engineering-nl",
+    "name": "Frencken Careers",
+    "company": "Frencken",
+    "enabled": true,
+    "type": "frencken",
+    "url": "https://explorefrencken.com/job-openings/?_sft_disciplines=engineering&_sft_location=rotterdam-netherlands,eindhoven-netherlands,reuver-netherlands",
+    "keywords": [
+      "mechanical",
+      "project",
+      "process",
+      "engineer"
+    ],
+    "locations": [
+      "Rotterdam",
+      "Eindhoven",
+      "Reuver"
+    ]
   }
 ]
