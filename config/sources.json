@@ -585,5 +585,32 @@
       "Eindhoven",
       "Reuver"
     ]
+  },
+  {
+    "id": "bosch-engineering-nl",
+    "name": "Bosch Careers",
+    "company": "Bosch",
+    "enabled": true,
+    "type": "smartrecruiters",
+    "company_id": "BoschGroup",
+    "country": "nl",
+    "functions": [
+      "Engineering",
+      "Project Management"
+    ],
+    "keywords": [
+      "mechanical",
+      "project",
+      "process"
+    ],
+    "exclude_keywords": [
+      "internship",
+      "intern",
+      "working student",
+      "werkstudent",
+      "stage",
+      "thesis",
+      "trainee"
+    ]
   }
 ]
