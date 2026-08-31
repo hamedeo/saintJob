@@ -612,5 +612,27 @@
       "thesis",
       "trainee"
     ]
+  },
+  {
+    "id": "nexperia-itec-nl",
+    "name": "Nexperia ITEC Careers",
+    "company": "Nexperia ITEC",
+    "enabled": true,
+    "type": "workday",
+    "base_url": "https://nexperia.wd3.myworkdayjobs.com",
+    "tenant": "nexperia",
+    "site": "ITEC",
+    "facets": {
+      "locationCountry": [
+        "9696868b09c64d52a62ee13b052383cc"
+      ]
+    },
+    "keywords": [
+      "mechanical",
+      "process",
+      "project",
+      "mechatronic",
+      "system integration"
+    ]
   }
 ]
