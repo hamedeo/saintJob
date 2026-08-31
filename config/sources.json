@@ -634,5 +634,19 @@
       "mechatronic",
       "system integration"
     ]
+  },
+  {
+    "id": "besi-netherlands",
+    "name": "Besi Careers",
+    "company": "Besi",
+    "enabled": true,
+    "type": "besi",
+    "url": "https://www.besi.com/careers/jobs/",
+    "apply_url": "https://www.besi.com/careers/jobs/apply-online/",
+    "keywords": [
+      "mechanical",
+      "project",
+      "process"
+    ]
   }
 ]
