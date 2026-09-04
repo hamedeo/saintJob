@@ -650,13 +650,13 @@
     ]
   },
   {
-    "id": "tue-mechanical",
-    "name": "TU/e Careers",
+    "id": "tue-phd-engd",
+    "name": "TU/e PhD & EngD",
     "company": "Eindhoven University of Technology",
     "enabled": true,
     "type": "varbi",
     "url": "https://tue.varbi.com/en/",
-    "department": "Department of Mechanical Engineering"
+    "phd_department": "Department of Mechanical Engineering"
   },
   {
     "id": "tudelft-rdi",
@@ -678,6 +678,21 @@
       "engd",
       "engineering doctorate",
       "pdeng"
+    ]
+  },
+  {
+    "id": "twd-netherlands",
+    "name": "TWD Careers",
+    "company": "TWD",
+    "enabled": true,
+    "type": "recruitee",
+    "base_url": "https://careers.twd.nl",
+    "countries": [
+      "NL"
+    ],
+    "keywords": [
+      "engineer",
+      "mechanical"
     ]
   }
 ]
