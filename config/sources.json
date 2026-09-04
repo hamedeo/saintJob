@@ -648,5 +648,36 @@
       "project",
       "process"
     ]
+  },
+  {
+    "id": "tue-mechanical",
+    "name": "TU/e Careers",
+    "company": "Eindhoven University of Technology",
+    "enabled": true,
+    "type": "varbi",
+    "url": "https://tue.varbi.com/en/",
+    "department": "Department of Mechanical Engineering"
+  },
+  {
+    "id": "tudelft-rdi",
+    "name": "TU Delft Careers",
+    "company": "TU Delft",
+    "enabled": true,
+    "type": "successfactors",
+    "url": "https://careers.tudelft.nl/search/?createNewAlert=false&q=&optionsFacetsDD_facility=&optionsFacetsDD_customfield1=&optionsFacetsDD_customfield2=University+graduate+%2F+WO&optionsFacetsDD_customfield3=&optionsFacetsDD_customfield4=Research%2C+Development+%26+Innovation",
+    "keywords": []
+  },
+  {
+    "id": "utwente-engd",
+    "name": "University of Twente EngD",
+    "company": "University of Twente",
+    "enabled": true,
+    "type": "utwente",
+    "url": "https://utwentecareers.nl/en/vacancies/?type=WP&category=PDE",
+    "keywords": [
+      "engd",
+      "engineering doctorate",
+      "pdeng"
+    ]
   }
 ]
