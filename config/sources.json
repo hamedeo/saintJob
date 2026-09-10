@@ -694,5 +694,28 @@
       "engineer",
       "mechanical"
     ]
+  },
+  {
+    "id": "quantware-delft",
+    "name": "QuantWare Careers",
+    "company": "QuantWare",
+    "enabled": true,
+    "type": "ashby",
+    "board_names": [
+      "quantware"
+    ],
+    "locations": [
+      "Delft"
+    ],
+    "employment_types": [
+      "FullTime"
+    ],
+    "keywords": [
+      "mechanical",
+      "process",
+      "project",
+      "equipment",
+      "design"
+    ]
   }
 ]
