@@ -717,5 +717,62 @@
       "equipment",
       "design"
     ]
+  },
+  {
+    "id": "technip-energies-nl",
+    "name": "Technip Energies Careers",
+    "company": "Technip Energies",
+    "enabled": true,
+    "type": "oracle",
+    "host": "https://hcxg.fa.em2.oraclecloud.com",
+    "site": "CX_1",
+    "location_id": "300000000345325",
+    "title_facet": "SJF003",
+    "countries": [
+      "NL"
+    ],
+    "keywords": [
+      "mechanical",
+      "project",
+      "process"
+    ]
+  },
+  {
+    "id": "applied-medical-nl",
+    "name": "Applied Medical Careers",
+    "company": "Applied Medical",
+    "enabled": true,
+    "type": "applied_medical",
+    "url": "https://careers.appliedmedical.com/careers-home/jobs?locations=Amersfoort,,Netherlands%7CThe%20Hague,,Netherlands&page=1",
+    "locations": [
+      "Amersfoort",
+      "The Hague"
+    ],
+    "keywords": [
+      "mechanical",
+      "project",
+      "process",
+      "engineer"
+    ],
+    "max_pages": 20
+  },  {
+    "id": "signify-netherlands",
+    "name": "Signify Careers",
+    "company": "Signify",
+    "enabled": true,
+    "type": "phenom",
+    "url": "https://www.careers.signify.com/global/en/search-results?p=ChIJu-SH28MJxkcRnwq9_851obM&location=Netherlands",
+    "location": "Netherlands",
+    "keywords": [
+      "mechanical",
+      "project",
+      "process",
+      "simulation",
+      "thermal",
+      "manufacturing",
+      "industrialization",
+      "product development"
+    ],
+    "timeout_ms": 20000
   }
 ]
