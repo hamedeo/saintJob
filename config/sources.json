@@ -774,5 +774,32 @@
       "product development"
     ],
     "timeout_ms": 20000
+  },
+  {
+    "id": "monumental-hardware",
+    "name": "Monumental Careers",
+    "company": "Monumental",
+    "enabled": true,
+    "type": "monumental",
+    "url": "https://www.monumental.co/jobs/",
+    "locations": [
+      "Amsterdam"
+    ],
+    "keywords": [
+      "mechanical",
+      "mechatronics"
+    ]
+  },
+  {
+    "id": "hilti-netherlands-engineering",
+    "name": "Hilti Careers",
+    "company": "Hilti",
+    "enabled": true,
+    "type": "hilti",
+    "url": "https://careers.hilti.group/en/jobs/?search=&country=20000567&team=20000042&team=20000054&experience=20000033&experience=20000034&lang=en&pagesize=20#results",
+    "keywords": [],
+    "profile_dir": "data/hilti-browser-profile",
+    "timeout_ms": 30000,
+    "cloudflare_wait_seconds": 120
   }
 ]
